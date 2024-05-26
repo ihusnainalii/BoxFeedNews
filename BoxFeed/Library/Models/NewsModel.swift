@@ -13,7 +13,7 @@ struct NewsDataModel: Decodable {
     var articles: [NewsModel]?
 }
 
-struct NewsModel: Decodable {
+struct NewsModel: Decodable, Hashable {
     
     var id: Sources?
     
@@ -31,11 +31,17 @@ struct NewsModel: Decodable {
         guard let date = publishedAt?.convertIntoDate() else { return "" }
         return date.format("MMM. dd, yyyy")
     }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(title?.hashValue ?? 0)
+    }
+    
+    static func == (lhs: NewsModel, rhs: NewsModel) -> Bool {
+        return lhs.title == rhs.title
+    }
 }
 
-// --------
-
-enum Sources: String, Decodable, CaseIterable {
+enum Sources: String, Decodable, CaseIterable, Identifiable {
     
     case bbcNews = "bbc-news"
     case bbcSport = "bbc-sport"
@@ -65,6 +71,10 @@ enum Sources: String, Decodable, CaseIterable {
     case usatoday = "usa-today"
     case vicenews = "vice-news"
     case wired = "wired"
+    
+    var id: String {
+        return rawValue
+    }
     
     var name: String {
         switch self {

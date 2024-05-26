@@ -11,6 +11,7 @@ import CoreData
 struct HomeView: View {
     
     @StateObject private var viewModel = HomeViewModel()
+    
     // CoreData
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(fetchRequest: ArticleCD.getAllArticles()) var articles: FetchedResults<ArticleCD>
@@ -21,30 +22,30 @@ struct HomeView: View {
                 Color.primary_color.edgesIgnoringSafeArea(.all)
                 
                 VStack(spacing: 0) {
-                    headerView
-                    NewsSelectorView(selection: $viewModel.selection)
-                        .padding(.top, 24)
+                    HeaderView
+                    NewsSelectorView(selection: $viewModel.selection,
+                                     currentPage: $viewModel.currentPage)
+                    .padding(.top, 24)
                     
-                    List {
-                        ForEach(0..<viewModel.news.count, id: \.self) { i in
-                            Button(action: { viewModel.selectArticle(index: i) }) {
-                                NewsModelView(model: viewModel.news[i])
-                                    .padding(.vertical, 4)
-                                    .padding(.top, i == 0 ? 12 : 0)
-                                    .listRowSeparator(.hidden)
-                            }.swipeActions {
-                                Button(action: {
-                                    viewModel.bookmarkArticle(viewModel.news[i], articles, moc)
-                                }) {
-                                    Image(systemName: viewModel.isBookmarked(viewModel.news[i], articles)
-                                          ? "bookmark" : "bookmark.fill")
-                                }
-                                .tint(.main_color)
+                    if viewModel.news.isEmpty {
+                        Spacer()
+                        ProgressView()
+                        Spacer()
+                    } else {
+                        List {
+                            ForEach(viewModel.news, id: \.self) { newsData in
+                                loadNews(with: newsData)
+                                    .onAppear {
+                                        if newsData == viewModel.lastObject {
+                                            viewModel.currentPage += 1
+                                        }
+                                    }
                             }
                         }
-                    }
-                    .refreshable {
-                        await viewModel.fetchNews()
+                        .refreshable {
+                            viewModel.currentPage = 1
+                            await viewModel.fetchNews()
+                        }
                     }
                     
                     Spacer()
@@ -56,9 +57,9 @@ struct HomeView: View {
                         ArticleView(viewModel: ArticleViewModel(model: article))
                     }
                 }
-                .fullScreenCover(isPresented: $viewModel.openBookmarks) {
-                    BookmarksView()
-                }
+                                 .fullScreenCover(isPresented: $viewModel.openBookmarks) {
+                                     BookmarksView()
+                                 }
             }
             .navigationBarHidden(true)
         }
@@ -67,9 +68,28 @@ struct HomeView: View {
         .navigationBarBackButtonHidden(true)
     }
     
-    private var headerView: some View {
+    @ViewBuilder func loadNews(with data: NewsModel) ->  some View {
+        Button {
+            viewModel.loadNews(with: data)
+        } label: {
+            NewsModelView(model: data)
+                .padding(.vertical, 4)
+                .listRowSeparator(.hidden)
+        }
+        .swipeActions {
+            Button {
+                viewModel.bookmarkArticle(data, articles, moc)
+            } label: {
+                Image(systemName: viewModel.isBookmarked(data, articles)
+                      ? "bookmark" : "bookmark.fill")
+            }
+            .tint(.main_color)
+        }
+    }
+    
+    @ViewBuilder private var HeaderView: some View {
         HStack(alignment: .center) {
-            Text("Breaking News").foregroundColor(.main_color)
+            Text("The Latest").foregroundColor(.main_color)
                 .modifier(FontModifier(.bold, size: 32))
             Spacer()
             Button(action: { viewModel.openBookmarks = true }) {

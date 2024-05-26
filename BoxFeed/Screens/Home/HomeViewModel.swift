@@ -11,20 +11,33 @@ import CoreData
 @MainActor
 class HomeViewModel: ObservableObject {
     
-    @Published var selection = 0 {
+    @Published var selection: Sources = .bbcNews {
         didSet {
+            print("selection: \(selection.rawValue)")
+            news.removeAll()
+            currentPage = 1
+        }
+    }
+    
+    @Published var currentPage = 1 {
+        didSet {
+            print("currentPage: \(currentPage)")
             Task {
                 await fetchNews()
             }
         }
     }
+    
     @Published private(set) var news = [NewsModel]()
     @Published var openBookmarks = false
     @Published var showArticle = false
     @Published var selectedArticle: NewsModel? = nil
     
-    private var currentPage = 1
     private let service: NewsService
+    
+    var lastObject: NewsModel {
+        news[news.endIndex - 1]
+    }
     
     init(service: NewsService = NewsService()) {
         self.service = service
@@ -34,15 +47,15 @@ class HomeViewModel: ObservableObject {
     }
     
     func fetchNews() async {
-        if let articles = try? await service.fetchNews(Sources.allCases[selection]) {
+        if let articles = try? await service.fetchNews(from: selection, page: currentPage) {
             withAnimation {
-                self.news = articles
+                self.news += articles
             }
         }
     }
     
-    func selectArticle(index: Int) {
-        selectedArticle = news[index]
+    func loadNews(with artical: NewsModel) {
+        selectedArticle = artical
         showArticle = true
     }
     

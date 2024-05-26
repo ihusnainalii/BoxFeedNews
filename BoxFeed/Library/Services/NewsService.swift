@@ -16,18 +16,15 @@ final class NewsService {
         return dateFormatter.string(from: Date())
     }()
     
-    func fetchNews(_ id: Sources) async throws -> [NewsModel]? {
-        
-        // Adjust the below URL date(from) depending on your API plan
-        // For free tires, there's a limit from which date they can request
-        let urlString = "https://newsapi.org/v2/everything?q=\(id)&to=\(currentDate)&sortBy=publishedAt&apiKey=\(AppConfig.API_KEY)"
-        print("Request for url: \(urlString)")
+    func fetchNews(from source: Sources, page: Int) async throws -> [NewsModel]? {
+        let urlString = "https://newsapi.org/v2/everything?q=\(source.rawValue)&to=\(currentDate)&sortBy=publishedAt&apiKey=\(AppConfig.API_KEY)&page=\(page)"
+        print("urlString \(urlString)")
         guard let url = URL(string: urlString) else { return nil }
         
         let (data, _) = try await URLSession.shared.data(from: url)
         if var model = try? JSONDecoder().decode(NewsDataModel.self, from: data) {
             for i in 0..<(model.articles?.count ?? 0) {
-                model.articles?[i].id = id
+                model.articles?[i].id = source
             }
             return model.articles
         }
