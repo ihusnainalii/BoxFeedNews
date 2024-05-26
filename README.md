@@ -89,7 +89,7 @@ Once you clone the repo,
     Apache 2.0 License
 
 
-    Copyright 2021 Sameer Nawaz
+    Copyright 2024 Husnain Ali
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
