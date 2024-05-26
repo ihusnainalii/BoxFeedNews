@@ -9,33 +9,37 @@ import SwiftUI
 
 struct AutoScrollingTabView: View {
     
-    @Binding var headlines: [NewsModel]
+    @ObservedObject var viewModel: HomeViewModel
     @State private var selection = 0
     
-    private let timer = Timer.publish(every: 2.0, on: .main, in: .common).autoconnect()
+    private let timer = Timer.publish(every: 5.0, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        TabView(selection: $selection) {
-            ForEach(headlines, id: \.self) { headline in
-                HeadlineView(imageUrl: headline.url, title: headline.title ?? "")
-            }
-        }
-        .frame(height: 200)
-        .tabViewStyle(PageTabViewStyle())
-        .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .never))
-        .onReceive(timer) { _ in
-            withAnimation {
-                let next = selection + 1
-                if next < headlines.count - 1 {
-                    selection = next
-                } else {
-                    selection = 0
+        VStack {
+            if viewModel.headlines.isEmpty {
+                ProgressView()
+            } else {
+                TabView(selection: $selection) {
+                    ForEach(0..<viewModel.headlines.count, id: \.self) { headlineIndex in
+                        HeadlineView(imageUrl: viewModel.headlines[headlineIndex].urlToImage, title: viewModel.headlines[headlineIndex].title ?? "")
+                            .tag(headlineIndex)
+                    }
+                }
+                .frame(height: 200)
+                .tabViewStyle(.page(indexDisplayMode: .never))
+                .onReceive(timer) { _ in
+                    withAnimation {
+                        selection = (selection + 1) % viewModel.headlines.count
+                    }
                 }
             }
+        }
+        .task {
+            await viewModel.fetchTopHeadlines()
         }
     }
 }
 
 #Preview {
-    AutoScrollingTabView(headlines: .constant([]))
+    AutoScrollingTabView(viewModel: HomeViewModel())
 }

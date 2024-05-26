@@ -37,7 +37,7 @@ final class NewsService {
                 urlComponents.path = "/v2/everything"
                 queryItems.append(contentsOf: [
                     URLQueryItem(name: "q", value: source?.rawValue),
-                    URLQueryItem(name: "from", value: date),
+                    URLQueryItem(name: "to", value: date),
                     URLQueryItem(name: "sortBy", value: "publishedAt"),
                     URLQueryItem(name: "page", value: String(page)),
                     URLQueryItem(name: "pageSize", value: String(100)),

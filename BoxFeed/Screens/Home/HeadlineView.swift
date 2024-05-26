@@ -23,7 +23,7 @@ struct HeadlineView: View {
                         .opacity(1)
                         .clipped()
                     
-                    Text(limitTextCount(maxLength: 75))
+                    Text(title)
                         .foregroundColor(.white)
                         .padding(8)
                         .background(Color.black.opacity(0.5))
@@ -33,14 +33,6 @@ struct HeadlineView: View {
             } placeholder: {
                 ProgressView()
             }
-        }
-    }
-    
-    func limitTextCount(maxLength: Int) -> String {
-        if title.count <= maxLength {
-            return title
-        } else {
-            return String(title.prefix(maxLength)) + "..."
         }
     }
 }

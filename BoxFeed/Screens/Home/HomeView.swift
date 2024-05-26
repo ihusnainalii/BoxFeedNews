@@ -26,11 +26,7 @@ struct HomeView: View {
                 VStack(spacing: 0) {
                     
                     HeaderView
-                    AutoScrollingTabView(headlines: $viewModel.headlines)
-                        .task {
-                            await viewModel.fetchTopHeadlines()
-                        }
-                    
+                    AutoScrollingTabView(viewModel: viewModel)
                     NewsSelectorView(selection: $viewModel.selection,
                                      currentPage: $viewModel.currentPage)
                     .padding(.top, 24)
@@ -69,10 +65,10 @@ struct HomeView: View {
                                      BookmarksView()
                                  }
             }
-            .task {
-                // await viewModel.fetchNews()
-            }
             .navigationBarHidden(true)
+            .task {
+                await viewModel.fetchNews()
+            }
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .navigationBarHidden(true)
