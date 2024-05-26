@@ -16,13 +16,21 @@ struct HomeView: View {
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(fetchRequest: ArticleCD.getAllArticles()) var articles: FetchedResults<ArticleCD>
     
+    @State private var selection = 0
+    
     var body: some View {
         NavigationView {
             ZStack {
                 Color.primary_color.edgesIgnoringSafeArea(.all)
                 
                 VStack(spacing: 0) {
+                    
                     HeaderView
+                    AutoScrollingTabView(headlines: $viewModel.headlines)
+                        .task {
+                            await viewModel.fetchTopHeadlines()
+                        }
+                    
                     NewsSelectorView(selection: $viewModel.selection,
                                      currentPage: $viewModel.currentPage)
                     .padding(.top, 24)
@@ -61,6 +69,9 @@ struct HomeView: View {
                                      BookmarksView()
                                  }
             }
+            .task {
+                // await viewModel.fetchNews()
+            }
             .navigationBarHidden(true)
         }
         .navigationViewStyle(StackNavigationViewStyle())
@@ -86,10 +97,10 @@ struct HomeView: View {
             .tint(.main_color)
         }
     }
-    
+
     @ViewBuilder private var HeaderView: some View {
         HStack(alignment: .center) {
-            Text("The Latest").foregroundColor(.main_color)
+            Text("The Trends").foregroundColor(.main_color)
                 .modifier(FontModifier(.bold, size: 32))
             Spacer()
             Button(action: { viewModel.openBookmarks = true }) {

@@ -32,6 +32,10 @@
 		73D48CFB269394E00044A5CC /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D48CFA269394E00044A5CC /* ImageExtension.swift */; };
 		73D48CFE269397C10044A5CC /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D48CFD269397C10044A5CC /* NewsModel.swift */; };
 		73FC2DBC269884BA00373EB3 /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FC2DBB269884BA00373EB3 /* ArticleView.swift */; };
+		95573A672C03A97000966C4F /* HeadlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95573A662C03A97000966C4F /* HeadlineView.swift */; };
+		95573A6B2C03B8B500966C4F /* Extension+Locale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95573A6A2C03B8B500966C4F /* Extension+Locale.swift */; };
+		95573A6D2C03B8F000966C4F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95573A6C2C03B8F000966C4F /* Constants.swift */; };
+		95573A6F2C03BB2400966C4F /* AutoScrollingTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95573A6E2C03BB2400966C4F /* AutoScrollingTabView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +66,10 @@
 		73D48CFA269394E00044A5CC /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		73D48CFD269397C10044A5CC /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		73FC2DBB269884BA00373EB3 /* ArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
+		95573A662C03A97000966C4F /* HeadlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlineView.swift; sourceTree = "<group>"; };
+		95573A6A2C03B8B500966C4F /* Extension+Locale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Locale.swift"; sourceTree = "<group>"; };
+		95573A6C2C03B8F000966C4F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		95573A6E2C03BB2400966C4F /* AutoScrollingTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoScrollingTabView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +112,8 @@
 			isa = PBXGroup;
 			children = (
 				73D48CEC26938AA50044A5CC /* Circe */,
+				95573A6A2C03B8B500966C4F /* Extension+Locale.swift */,
+				95573A6C2C03B8F000966C4F /* Constants.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -136,6 +146,8 @@
 				732E1D602696222A0085F136 /* HomeView.swift */,
 				732E1D5E269621C10085F136 /* HomeViewModel.swift */,
 				732E1D64269625DB0085F136 /* NewsSelectorView.swift */,
+				95573A662C03A97000966C4F /* HeadlineView.swift */,
+				95573A6E2C03BB2400966C4F /* AutoScrollingTabView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -315,11 +327,14 @@
 				73056CE726F6BF4E00DD94BA /* ArticleCD.swift in Sources */,
 				73056CEA26F6D61300DD94BA /* BookmarksView.swift in Sources */,
 				737FE37E2697B0BF00A33EB7 /* ActivityIndicator.swift in Sources */,
+				95573A6D2C03B8F000966C4F /* Constants.swift in Sources */,
+				95573A672C03A97000966C4F /* HeadlineView.swift in Sources */,
 				73D48CE3269387EA0044A5CC /* BoxFeed.xcdatamodeld in Sources */,
 				732E1D59269620970085F136 /* Config.swift in Sources */,
 				737FE3792697A7AB00A33EB7 /* NewsModelView.swift in Sources */,
 				732E1D612696222A0085F136 /* HomeView.swift in Sources */,
 				732E1D5F269621C10085F136 /* HomeViewModel.swift in Sources */,
+				95573A6F2C03BB2400966C4F /* AutoScrollingTabView.swift in Sources */,
 				73D48CD7269387E50044A5CC /* BoxFeedApp.swift in Sources */,
 				73D48CFB269394E00044A5CC /* ImageExtension.swift in Sources */,
 				73056CEE26F6E06E00DD94BA /* ArticleViewModel.swift in Sources */,
@@ -327,6 +342,7 @@
 				73FC2DBC269884BA00373EB3 /* ArticleView.swift in Sources */,
 				73056CEC26F6D63400DD94BA /* BookmarksViewModel.swift in Sources */,
 				73D48CEE26938AE60044A5CC /* FontModifier.swift in Sources */,
+				95573A6B2C03B8B500966C4F /* Extension+Locale.swift in Sources */,
 				732E1D65269625DB0085F136 /* NewsSelectorView.swift in Sources */,
 				73D48CF726938DE20044A5CC /* Models.swift in Sources */,
 			);
@@ -463,6 +479,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BoxFeed/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "The Trends";
 				INFOPLIST_KEY_CFBundleExecutable = BoxFeed;
 				INFOPLIST_KEY_CFBundleName = BoxFeed;
 				INFOPLIST_KEY_CFBundleVersion = 1;
@@ -477,7 +494,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.femargent.BoxFeed;
+				PRODUCT_BUNDLE_IDENTIFIER = com.thrends;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -497,6 +514,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BoxFeed/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "The Trends";
 				INFOPLIST_KEY_CFBundleExecutable = BoxFeed;
 				INFOPLIST_KEY_CFBundleName = BoxFeed;
 				INFOPLIST_KEY_CFBundleVersion = 1;
@@ -511,7 +529,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.femargent.BoxFeed;
+				PRODUCT_BUNDLE_IDENTIFIER = com.thrends;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

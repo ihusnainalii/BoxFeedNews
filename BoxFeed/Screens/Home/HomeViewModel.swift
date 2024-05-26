@@ -13,7 +13,6 @@ class HomeViewModel: ObservableObject {
     
     @Published var selection: Sources = .bbcNews {
         didSet {
-            print("selection: \(selection.rawValue)")
             news.removeAll()
             currentPage = 1
         }
@@ -21,7 +20,6 @@ class HomeViewModel: ObservableObject {
     
     @Published var currentPage = 1 {
         didSet {
-            print("currentPage: \(currentPage)")
             Task {
                 await fetchNews()
             }
@@ -29,6 +27,7 @@ class HomeViewModel: ObservableObject {
     }
     
     @Published private(set) var news = [NewsModel]()
+    @Published var headlines = [NewsModel]()
     @Published var openBookmarks = false
     @Published var showArticle = false
     @Published var selectedArticle: NewsModel? = nil
@@ -41,15 +40,20 @@ class HomeViewModel: ObservableObject {
     
     init(service: NewsService = NewsService()) {
         self.service = service
-        Task {
-            await fetchNews()
-        }
     }
     
     func fetchNews() async {
         if let articles = try? await service.fetchNews(from: selection, page: currentPage) {
             withAnimation {
                 self.news += articles
+            }
+        }
+    }
+    
+    func fetchTopHeadlines() async {
+        if let headlines = try? await service.fetchTopHeadlines() {
+            withAnimation {
+                self.headlines = headlines
             }
         }
     }
