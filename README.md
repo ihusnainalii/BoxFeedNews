@@ -1,4 +1,5 @@
-![GitHub Cards Preview](https://github.com/sameersyd/BoxFeed/blob/main/art/cover.png?raw=true)
+
+![cover](https://github.com/ihusnainalii/BoxFeedNews/assets/41187664/e5d621ac-ba3d-442a-a6db-6a99c400eb21)
 
 # Box Feed
 News App 📱 built to demonstrate the use of following features,
@@ -10,12 +11,33 @@ News App 📱 built to demonstrate the use of following features,
     - Refreshable
     - Swipe Actions
     - Separator
+    - Pagination
 - Core Data
 - MVVM Architecture Pattern
 
 *Made with love ❤️*
 
 <br />
+
+## Screenshots
+<table>
+        <tr>
+            <th>Home</th>
+            <th>News Detail</th>
+        </tr>
+        <tr>
+            <td><img src="https://github.com/ihusnainalii/BoxFeedNews/assets/41187664/6a98da7a-d9db-40be-af3f-909175a97c55" alt="Home"></td>
+            <td><img src="https://github.com/ihusnainalii/BoxFeedNews/assets/41187664/f33b653d-5405-489a-a219-84a317858cb0" alt="News Detail"></td>
+        </tr>
+        <tr>
+            <th>Bookmark</th>
+            <th>Bookmark Detail</th>
+        </tr>
+        <tr>
+            <td><img src="https://github.com/ihusnainalii/BoxFeedNews/assets/41187664/f55b2e47-8a5c-4972-8ed0-ca6a11be7469" alt="Bookmark"></td>
+            <td><img src="https://github.com/ihusnainalii/BoxFeedNews/assets/41187664/20fcc580-2a29-45db-857d-8c52eb7ac6ab" alt="Bookmark Detail"></td>
+        </tr>
+    </table>
 
 <br />
 
