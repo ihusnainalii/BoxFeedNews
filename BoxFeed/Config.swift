@@ -10,7 +10,7 @@ import Foundation
 struct AppConfig {
     
     // App Globals
-    static let APP_NAME = "Box Feed"
+    static let APP_NAME = "The Trends"
     static let APP_LINK = "https://github.com/ihusnainalii/BoxFeedNews"
     
     // https://newsapi.org
