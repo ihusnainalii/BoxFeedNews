@@ -20,8 +20,11 @@ struct ArticleView: View {
         NavigationView {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(spacing: 32) {
-                    HeaderView(height: 400).frame(height: 400)
-                    BodyView.padding(.horizontal, 18)
+                    HeaderView(height: 400)
+                        .frame(height: 400)
+                    
+                    BodyView
+                        .padding(.horizontal, 18)
                     Spacer()
                 }
             }
@@ -49,9 +52,10 @@ extension ArticleView {
                 .foregroundColor(.text_primary.opacity(0.7))
                 .modifier(FontModifier(.regular, size: 16))
                 .frame(maxWidth: .infinity)
+            
             Button(action: viewModel.openNewsUrl) {
                 Text("READ MORE")
-                    .foregroundColor(.white)
+                    .foregroundColor(.main_color)
                     .modifier(FontModifier(.regular, size: 14))
                     .frame(height: 45)
                     .frame(maxWidth: .infinity)

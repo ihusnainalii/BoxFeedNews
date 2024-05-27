@@ -21,7 +21,7 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color.primary_color.edgesIgnoringSafeArea(.all)
+                Color.main_color.edgesIgnoringSafeArea(.all)
                 
                 VStack(spacing: 0) {
                     
@@ -51,6 +51,7 @@ struct HomeView: View {
                                         }
                                 }
                             }
+                            .scrollContentBackground(.hidden)
                             .refreshable {
                                 viewModel.currentPage = 1
                                 await viewModel.fetchNews()
@@ -102,13 +103,13 @@ struct HomeView: View {
 
     @ViewBuilder private var HeaderView: some View {
         HStack(alignment: .center) {
-            Text("The Trends").foregroundColor(.main_color)
+            Text("The Trends").foregroundColor(.text_primary)
                 .modifier(FontModifier(.bold, size: 32))
             Spacer()
             Button(action: { viewModel.openBookmarks = true }) {
                 Image.bookmark.resizable()
                     .renderingMode(.template)
-                    .foregroundColor(.black)
+                    .foregroundColor(.text_primary)
                     .frame(width: 22, height: 22)
             }
         }.padding(.horizontal, 16)
