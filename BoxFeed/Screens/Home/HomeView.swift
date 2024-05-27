@@ -21,7 +21,7 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color.main_color.edgesIgnoringSafeArea(.all)
+                Color.appBgColor.edgesIgnoringSafeArea(.all)
                 
                 VStack(spacing: 0) {
                     
@@ -49,6 +49,7 @@ struct HomeView: View {
                                                 viewModel.currentPage += 1
                                             }
                                         }
+                                        .listRowBackground(Color.listBgColor)
                                 }
                             }
                             .scrollContentBackground(.hidden)
@@ -97,19 +98,19 @@ struct HomeView: View {
                 Image(systemName: viewModel.isBookmarked(data, articles)
                       ? "bookmark" : "bookmark.fill")
             }
-            .tint(.main_color)
+            .tint(.appBgColor)
         }
     }
 
     @ViewBuilder private var HeaderView: some View {
         HStack(alignment: .center) {
-            Text("The Trends").foregroundColor(.text_primary)
+            Text("The Trends").foregroundColor(.appTextColor)
                 .modifier(FontModifier(.bold, size: 32))
             Spacer()
             Button(action: { viewModel.openBookmarks = true }) {
                 Image.bookmark.resizable()
                     .renderingMode(.template)
-                    .foregroundColor(.text_primary)
+                    .foregroundColor(.appTextColor)
                     .frame(width: 22, height: 22)
             }
         }.padding(.horizontal, 16)

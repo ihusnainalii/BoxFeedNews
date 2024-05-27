@@ -17,13 +17,14 @@ struct NewsSelectorView: View {
                 ForEach(viewModel.sources) { source in
                     VStack(spacing: 8) {
                         Text(source.name ?? "Unknown")
-                            .foregroundColor(Color.text_primary)
+                            .foregroundColor(.appTextColor)
                             .modifier(FontModifier(.bold, size: 14))
                             .layoutPriority(1)
                             .fixedSize(horizontal: true, vertical: false)
+                        
                         if viewModel.selection == source {
                             Rectangle().frame(height: 2)
-                                .foregroundColor(.text_primary)
+                                .foregroundColor(.appTextColor)
                         }
                     }
                     .padding(.horizontal, 8)
@@ -35,6 +36,6 @@ struct NewsSelectorView: View {
                 }
             }.padding(.horizontal, 12)
         }
-        .background(Color.main_color)
+        .background(Color.appBgColor)
     }
 }

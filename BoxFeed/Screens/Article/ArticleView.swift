@@ -49,17 +49,17 @@ extension ArticleView {
             AuthorView
             Text(viewModel.model.content ?? "")
                 .multilineTextAlignment(.leading)
-                .foregroundColor(.text_primary.opacity(0.7))
+                .foregroundColor(.appTextColor.opacity(0.7))
                 .modifier(FontModifier(.regular, size: 16))
                 .frame(maxWidth: .infinity)
             
             Button(action: viewModel.openNewsUrl) {
                 Text("READ MORE")
-                    .foregroundColor(.main_color)
+                    .foregroundColor(.appBgColor)
                     .modifier(FontModifier(.regular, size: 14))
                     .frame(height: 45)
                     .frame(maxWidth: .infinity)
-                    .background(Color.text_primary)
+                    .background(Color.appTextColor)
             }
             .padding(.vertical, 12)
         }
@@ -68,13 +68,13 @@ extension ArticleView {
     private var AuthorView: some View {
         HStack(alignment: .center) {
             Text(viewModel.model.author ?? "")
-                .foregroundColor(.text_primary)
+                .foregroundColor(.appTextColor)
                 .modifier(FontModifier(.bold, size: 16))
             Spacer()
             Button(action: viewModel.openNewsUrl) {
                 Image.article.resizable()
                     .renderingMode(.template)
-                    .foregroundColor(.text_primary)
+                    .foregroundColor(.appTextColor)
                     .frame(width: 22, height: 22)
             }
         }
@@ -106,14 +106,14 @@ extension ArticleView {
                             (viewModel.isBookmarked(articles) ? Image.bookmark_filled : Image.bookmark)
                                 .resizable()
                                 .renderingMode(.template)
-                                .foregroundColor(.white)
+                                .foregroundColor(.appTextColor)
                                 .frame(width: 20, height: 20)
                         }
                         Spacer()
                         Button(action: { dismiss() }) {
                             Image.x.resizable()
                                 .renderingMode(.template)
-                                .foregroundColor(.white)
+                                .foregroundColor(.appTextColor)
                                 .frame(width: 26, height: 26)
                         }
                     }.padding(.horizontal, 20).padding(.vertical, 60)
@@ -131,6 +131,10 @@ extension ArticleView {
     private var Header_Gradient: some View {
         GeometryReader { geo in
             VStack {
+                LinearGradient(
+                    gradient: Gradient(colors: [.appBgColor.opacity(0.7), .black.opacity(0)]),
+                    startPoint: .top, endPoint: .bottom
+                ).frame(height: (geo.size.height / 100) * 50)
                 Spacer()
                 LinearGradient(
                     gradient: Gradient(colors: [.black, .black.opacity(0)]),

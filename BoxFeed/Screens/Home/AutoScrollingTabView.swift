@@ -38,7 +38,7 @@ struct AutoScrollingTabView: View {
                 }
             }
         }
-        .background(Color.main_color)
+        .background(Color.appBgColor)
         .task {
             await viewModel.fetchTopHeadlines()
         }

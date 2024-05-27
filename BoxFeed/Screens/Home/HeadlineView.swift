@@ -19,7 +19,7 @@ struct HeadlineView: View {
                     image
                         .resizable()
                         .scaledToFill()
-                        .frame(maxHeight: 200)
+                        .frame(height: 200)
                         .opacity(1)
                         .clipped()
                     

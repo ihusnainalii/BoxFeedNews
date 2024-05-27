@@ -18,7 +18,7 @@ struct BookmarksView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color.primary_color.edgesIgnoringSafeArea(.all)
+                Color.appBgColor.edgesIgnoringSafeArea(.all)
                 
                 VStack(spacing: 0) {
                     headerView
@@ -34,7 +34,7 @@ struct BookmarksView: View {
                                 }) {
                                     Image(systemName: "bookmark")
                                 }
-                                .tint(.main_color)
+                                .tint(.appBgColor)
                             }
                         }
                     }
@@ -59,13 +59,13 @@ struct BookmarksView: View {
     private var headerView: some View {
         HStack {
             Text("Bookmarks")
-                .foregroundColor(.text_primary)
+                .foregroundColor(.appTextColor)
                 .modifier(FontModifier(.bold, size: 32))
             Spacer()
             Button(action: { dismiss() }) {
                 Image.x.resizable()
                     .renderingMode(.template)
-                    .foregroundColor(.text_primary)
+                    .foregroundColor(.appTextColor)
                     .frame(width: 26, height: 26)
             }
         }.padding(.horizontal, 20)
