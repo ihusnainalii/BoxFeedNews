@@ -101,6 +101,7 @@ class HomeViewModel: ObservableObject {
         model.id = UUID()
         model.createdAt = Date()
         model.sourceId = article.id?.id
+        model.sourceName = article.id?.name
         model.author = article.author
         model.content = article.content
         model.desc = article.description

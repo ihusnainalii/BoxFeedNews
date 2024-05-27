@@ -12,7 +12,7 @@ struct AutoScrollingTabView: View {
     @ObservedObject var viewModel: HomeViewModel
     @State private var selection = 0
     
-    private let timer = Timer.publish(every: 5.0, on: .main, in: .common).autoconnect()
+    private let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
     
     var body: some View {
         VStack {
@@ -21,8 +21,12 @@ struct AutoScrollingTabView: View {
             } else {
                 TabView(selection: $selection) {
                     ForEach(0..<viewModel.headlines.count, id: \.self) { headlineIndex in
-                        HeadlineView(imageUrl: viewModel.headlines[headlineIndex].urlToImage, title: viewModel.headlines[headlineIndex].title ?? "")
-                            .tag(headlineIndex)
+                        Button {
+                            viewModel.loadNews(with: viewModel.headlines[headlineIndex])
+                        } label: {
+                            HeadlineView(imageUrl: viewModel.headlines[headlineIndex].urlToImage, title: viewModel.headlines[headlineIndex].title ?? "")
+                        }
+                        .tag(headlineIndex)
                     }
                 }
                 .frame(height: 200)
