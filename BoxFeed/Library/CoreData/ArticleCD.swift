@@ -12,6 +12,7 @@ public class ArticleCD: NSManagedObject, Identifiable {
     @NSManaged public var id: UUID?
     @NSManaged public var createdAt: Date?
     @NSManaged public var sourceId: String?
+    @NSManaged public var sourceName: String?
     @NSManaged public var author: String?
     @NSManaged public var content: String?
     @NSManaged public var desc: String?

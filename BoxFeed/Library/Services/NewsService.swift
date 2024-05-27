@@ -17,7 +17,8 @@ final class NewsService {
     
     enum Endpoints {
         
-        case fetchNews(source: Sources?, date: String, page: Int)
+        case fetchNews(source: SourceModel?, date: String, page: Int)
+        case fetchSoruce
         case topHeadlines
         
         var url: URL? {
@@ -36,12 +37,14 @@ final class NewsService {
             case .fetchNews(let source, let date, let page):
                 urlComponents.path = "/v2/everything"
                 queryItems.append(contentsOf: [
-                    URLQueryItem(name: "q", value: source?.rawValue),
+                    URLQueryItem(name: "q", value: source?.id),
                     URLQueryItem(name: "to", value: date),
                     URLQueryItem(name: "sortBy", value: "publishedAt"),
                     URLQueryItem(name: "page", value: String(page)),
                     URLQueryItem(name: "pageSize", value: String(100)),
                 ])
+            case .fetchSoruce:
+                urlComponents.path = "/v2/top-headlines/sources"
             case .topHeadlines:
                 urlComponents.path = "/v2/top-headlines"
                 queryItems.append(contentsOf: [
@@ -64,7 +67,7 @@ final class NewsService {
         return dateFormatter.string(from: Date())
     }()
     
-    func fetchNews(from source: Sources, page: Int) async throws -> [NewsModel]? {
+    func fetchNews(from source: SourceModel, page: Int) async throws -> [NewsModel]? {
         guard let url = getListURL(with: .fetchNews(source: source, date: currentDate, page: page)) else { return nil }
         print("Fetch News URL: \(url)")
         let (data, _) = try await URLSession.shared.data(from: url)
@@ -73,6 +76,16 @@ final class NewsService {
                 model.articles?[i].id = source
             }
             return model.articles
+        }
+        return []
+    }
+    
+    func fetchSources() async throws -> [SourceModel]? {
+        guard let url = getListURL(with: .fetchSoruce) else { return nil }
+        print("Fetch Sources URL: \(url)")
+        let (data, _) = try await URLSession.shared.data(from: url)
+        if let model = try? JSONDecoder().decode(SourceDataModel.self, from: data) {
+            return model.sources
         }
         return []
     }

@@ -36,6 +36,7 @@
 		95573A6B2C03B8B500966C4F /* Extension+Locale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95573A6A2C03B8B500966C4F /* Extension+Locale.swift */; };
 		95573A6D2C03B8F000966C4F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95573A6C2C03B8F000966C4F /* Constants.swift */; };
 		95573A6F2C03BB2400966C4F /* AutoScrollingTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95573A6E2C03BB2400966C4F /* AutoScrollingTabView.swift */; };
+		95573A732C04533400966C4F /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95573A722C04533400966C4F /* Source.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		95573A6A2C03B8B500966C4F /* Extension+Locale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Locale.swift"; sourceTree = "<group>"; };
 		95573A6C2C03B8F000966C4F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		95573A6E2C03BB2400966C4F /* AutoScrollingTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoScrollingTabView.swift; sourceTree = "<group>"; };
+		95573A722C04533400966C4F /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				73D48CFD269397C10044A5CC /* NewsModel.swift */,
+				95573A722C04533400966C4F /* Source.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 				73D48CFE269397C10044A5CC /* NewsModel.swift in Sources */,
 				736C8EE726F5B8ED0053CC8F /* Extensions.swift in Sources */,
 				736C8EE326F5B34A0053CC8F /* NewsService.swift in Sources */,
+				95573A732C04533400966C4F /* Source.swift in Sources */,
 				73056CE726F6BF4E00DD94BA /* ArticleCD.swift in Sources */,
 				73056CEA26F6D61300DD94BA /* BookmarksView.swift in Sources */,
 				737FE37E2697B0BF00A33EB7 /* ActivityIndicator.swift in Sources */,

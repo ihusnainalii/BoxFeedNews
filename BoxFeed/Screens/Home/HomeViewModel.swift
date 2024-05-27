@@ -11,7 +11,7 @@ import CoreData
 @MainActor
 class HomeViewModel: ObservableObject {
     
-    @Published var selection: Sources = .bbcNews {
+    @Published var selection: SourceModel? = nil {
         didSet {
             news.removeAll()
             currentPage = 1
@@ -27,6 +27,7 @@ class HomeViewModel: ObservableObject {
     }
     
     @Published private(set) var news = [NewsModel]()
+    @Published private(set) var sources = [SourceModel]()
     @Published var headlines = [NewsModel]()
     @Published var openBookmarks = false
     @Published var showArticle = false
@@ -43,9 +44,19 @@ class HomeViewModel: ObservableObject {
     }
     
     func fetchNews() async {
+        guard let selection = selection else { return }
         if let articles = try? await service.fetchNews(from: selection, page: currentPage) {
             withAnimation {
                 self.news += articles
+            }
+        }
+    }
+    
+    func fetchSources() async {
+        if let sources = try? await service.fetchSources() {
+            withAnimation {
+                self.selection = sources.first
+                self.sources += sources
             }
         }
     }
@@ -89,7 +100,7 @@ class HomeViewModel: ObservableObject {
         let model = ArticleCD(context: moc)
         model.id = UUID()
         model.createdAt = Date()
-        model.sourceId = article.id?.rawValue
+        model.sourceId = article.id?.id
         model.author = article.author
         model.content = article.content
         model.desc = article.description

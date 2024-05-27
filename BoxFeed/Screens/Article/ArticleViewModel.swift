@@ -50,7 +50,8 @@ class ArticleViewModel: ObservableObject {
         let articleObj = ArticleCD(context: moc)
         articleObj.id = UUID()
         articleObj.createdAt = Date()
-        articleObj.sourceId = model.id?.rawValue
+        articleObj.sourceId = model.id?.id
+        articleObj.sourceName = model.id?.name
         articleObj.author = model.author
         articleObj.content = model.content
         articleObj.desc = model.description

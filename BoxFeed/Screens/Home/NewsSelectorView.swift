@@ -9,21 +9,19 @@ import SwiftUI
 
 struct NewsSelectorView: View {
     
-    @Binding var selection: Sources
-    @Binding var currentPage: Int
-    private let sources = Sources.allCases
+    @ObservedObject var viewModel: HomeViewModel
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(alignment: .top) {
-                ForEach(sources) { source in
+                ForEach(viewModel.sources) { source in
                     VStack(spacing: 8) {
-                        Text(source.name)
+                        Text(source.name ?? "")
                             .foregroundColor(Color.text_primary)
                             .modifier(FontModifier(.bold, size: 14))
                             .layoutPriority(1)
                             .fixedSize(horizontal: true, vertical: false)
-                        if selection == source {
+                        if viewModel.selection == source {
                             Rectangle().frame(height: 2)
                                 .foregroundColor(.main_color)
                         }
@@ -31,7 +29,7 @@ struct NewsSelectorView: View {
                     .padding(.horizontal, 8)
                     .onTapGesture {
                         withAnimation(.easeInOut(duration: 0.3)) {
-                            selection = source
+                            viewModel.selection = source
                         }
                     }
                 }

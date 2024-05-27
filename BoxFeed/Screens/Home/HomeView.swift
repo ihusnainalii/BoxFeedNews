@@ -26,33 +26,39 @@ struct HomeView: View {
                 VStack(spacing: 0) {
                     
                     HeaderView
-                    AutoScrollingTabView(viewModel: viewModel)
-                    NewsSelectorView(selection: $viewModel.selection,
-                                     currentPage: $viewModel.currentPage)
-                    .padding(.top, 24)
                     
-                    if viewModel.news.isEmpty {
+                    if viewModel.sources.isEmpty {
                         Spacer()
                         ProgressView()
                         Spacer()
                     } else {
-                        List {
-                            ForEach(viewModel.news, id: \.self) { newsData in
-                                loadNews(with: newsData)
-                                    .onAppear {
-                                        if newsData == viewModel.lastObject {
-                                            viewModel.currentPage += 1
+                        AutoScrollingTabView(viewModel: viewModel)
+                        NewsSelectorView(viewModel: viewModel)
+                        .padding(.top, 24)
+                        
+                        if viewModel.news.isEmpty {
+                            Spacer()
+                            ProgressView()
+                            Spacer()
+                        } else {
+                            List {
+                                ForEach(viewModel.news, id: \.self) { newsData in
+                                    loadNews(with: newsData)
+                                        .onAppear {
+                                            if newsData == viewModel.lastObject {
+                                                viewModel.currentPage += 1
+                                            }
                                         }
-                                    }
+                                }
+                            }
+                            .refreshable {
+                                viewModel.currentPage = 1
+                                await viewModel.fetchNews()
                             }
                         }
-                        .refreshable {
-                            viewModel.currentPage = 1
-                            await viewModel.fetchNews()
-                        }
+                        
+                        Spacer()
                     }
-                    
-                    Spacer()
                 }
                 .edgesIgnoringSafeArea(.bottom)
                 .fullScreenCover(isPresented: $viewModel.showArticle,
@@ -67,7 +73,7 @@ struct HomeView: View {
             }
             .navigationBarHidden(true)
             .task {
-                await viewModel.fetchNews()
+                await viewModel.fetchSources()
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())

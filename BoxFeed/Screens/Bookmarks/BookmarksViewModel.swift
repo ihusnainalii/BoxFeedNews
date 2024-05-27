@@ -23,7 +23,7 @@ class BookmarksViewModel: ObservableObject {
     
     func getNewsModel(_ article: ArticleCD) -> NewsModel {
         return NewsModel(
-            id: Sources(rawValue: article.sourceId ?? ""),
+            id: SourceModel(id: article.sourceId ?? "", name: article.sourceName ?? ""),
             author: article.author,
             title: article.title,
             description: article.desc,
