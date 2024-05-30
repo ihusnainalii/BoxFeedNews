@@ -21,23 +21,23 @@ News App 📱 built to demonstrate the use of following features,
 
 ## Screenshots
 <table>
-        <tr>
-            <th>Home</th>
-            <th>News Detail</th>
-        </tr>
-        <tr>
-            <td><img src="https://github.com/ihusnainalii/BoxFeedNews/assets/41187664/6a98da7a-d9db-40be-af3f-909175a97c55" alt="Home"></td>
-            <td><img src="https://github.com/ihusnainalii/BoxFeedNews/assets/41187664/f33b653d-5405-489a-a219-84a317858cb0" alt="News Detail"></td>
-        </tr>
-        <tr>
-            <th>Bookmark</th>
-            <th>Bookmark Detail</th>
-        </tr>
-        <tr>
-            <td><img src="https://github.com/ihusnainalii/BoxFeedNews/assets/41187664/f55b2e47-8a5c-4972-8ed0-ca6a11be7469" alt="Bookmark"></td>
-            <td><img src="https://github.com/ihusnainalii/BoxFeedNews/assets/41187664/20fcc580-2a29-45db-857d-8c52eb7ac6ab" alt="Bookmark Detail"></td>
-        </tr>
-    </table>
+    <tr>
+        <th>Home</th>
+        <th>News Detail</th>
+        <th>Bookmark</th>
+    </tr>
+    <tr>
+        <td><img src="https://github.com/ihusnainalii/BoxFeedNews/assets/41187664/04856440-acc6-4cb2-b5d9-42d43c853be9" alt="Home"></td>
+        <td><img src="https://github.com/ihusnainalii/BoxFeedNews/assets/41187664/afef4ebd-06e1-4554-9b4a-5703adefc667" alt="News Detail"></td>
+        <td><img src="https://github.com/ihusnainalii/BoxFeedNews/assets/41187664/7ec2d80b-1c80-40b4-9928-c2bdc9d278ef" alt="Bookmark"></td>
+    </tr>
+    <tr>
+        <td><img src="https://github.com/ihusnainalii/BoxFeedNews/assets/41187664/457b975f-f770-42bb-ae0a-8529748cde38" alt="Home"></td>
+        <td><img src="https://github.com/ihusnainalii/BoxFeedNews/assets/41187664/6e2c7dcc-3b20-4215-9a0e-97809a431155" alt="News Detail"></td>
+        <td><img src="https://github.com/ihusnainalii/BoxFeedNews/assets/41187664/93c10523-8813-46d7-b5c9-dfb9d6b8ef07" alt="Bookmark"></td>
+    </tr>
+</table>
+
 
 <br />
 
