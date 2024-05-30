@@ -30,3 +30,11 @@ struct SourceModel: Decodable, Hashable, Identifiable {
         return lhs.id == rhs.id
     }
 }
+
+extension SourceModel {
+    static let testData = [SourceModel(id: "abc-news", name: "ABC News"),
+                           SourceModel(id: "abc-news-au", name: "ABC News (AU)"),
+                           SourceModel(id: "aftenposten", name: "Aftenposten")]
+    
+    static let testSource = SourceModel(id: "abc-news", name: "ABC News")
+}
