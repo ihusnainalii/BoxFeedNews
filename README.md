@@ -27,9 +27,9 @@ News App 📱 built to demonstrate the use of following features,
         <th>Bookmark</th>
     </tr>
     <tr>
-        <td><img src="https://github.com/ihusnainalii/BoxFeedNews/assets/41187664/04856440-acc6-4cb2-b5d9-42d43c853be9" alt="Home"></td>
+        <td><img src="https://github.com/ihusnainalii/BoxFeedNews/assets/41187664/7ec2d80b-1c80-40b4-9928-c2bdc9d278ef" alt="Home"></td>
         <td><img src="https://github.com/ihusnainalii/BoxFeedNews/assets/41187664/afef4ebd-06e1-4554-9b4a-5703adefc667" alt="News Detail"></td>
-        <td><img src="https://github.com/ihusnainalii/BoxFeedNews/assets/41187664/7ec2d80b-1c80-40b4-9928-c2bdc9d278ef" alt="Bookmark"></td>
+        <td><img src="https://github.com/ihusnainalii/BoxFeedNews/assets/41187664/04856440-acc6-4cb2-b5d9-42d43c853be9" alt="Bookmark"></td>
     </tr>
     <tr>
         <td><img src="https://github.com/ihusnainalii/BoxFeedNews/assets/41187664/457b975f-f770-42bb-ae0a-8529748cde38" alt="Home"></td>
